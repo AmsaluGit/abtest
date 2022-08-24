@@ -47,6 +47,7 @@ class CounterController extends Controller
                 [
                     'minutes' => $request->setting,
                     'deadline' => ((int)$request->setting*60 + time()), //deadline in seconds
+                    'demo_mode' => 0, //deadline in seconds
                 ]
             );
         } else {
@@ -60,10 +61,13 @@ class CounterController extends Controller
 
     public function control(Request $request)
     {
+        
          $setting = Setting::find(1);
         if (!$setting) {
             return redirect('settingu');
         }
+        
+        $is_demo = $setting->demo_mode;
 
         $ip   = request()->ip();
         $ip = $this->ipToString($ip);
@@ -74,22 +78,26 @@ class CounterController extends Controller
 
         $incrementing_minute = (int)($setting->minutes - $remaining_minutes);
 
-        if ($incrementing_minute < $setting->minutes /* && !$cookie*/) {
-            $counter = Counter::where('minute',$incrementing_minute)->first();
-            
-            if ($counter) {
-                $counter->control = $counter->control + 1;
-                $counter->save();
-            } else {
-                Counter::create([
-                   'control'=>1,
-                   'minute'=>$incrementing_minute,
-                ]);
-            }
+        if ($incrementing_minute < $setting->minutes && ($is_demo || !$cookie)) {
 
-            $response = new \Illuminate\Http\Response('Hello World');
-            $response->withCookie(cookie($ip, $ip, 60));
-            return $response;
+            
+                $counter = Counter::where('minute',$incrementing_minute)->first();
+            
+                if ($counter) {
+                    $counter->control = $counter->control + 1;
+                    $counter->save();
+                } else {
+                    Counter::create([
+                       'control'=>1,
+                       'minute'=>$incrementing_minute,
+                    ]);
+                }
+    
+                $response = new \Illuminate\Http\Response('Hello World');
+                $response->withCookie(cookie($ip, $ip, 60));
+                return $response;
+            
+           
         }
 
 
@@ -99,12 +107,11 @@ class CounterController extends Controller
     public function variation(Request $request)
     {
         
-        // return $this->returnResponse($request, 'variation');
-        $setting = Setting::find(1);
+         $setting = Setting::find(1);
         if (!$setting) {
             return redirect('settingu');
         }
-
+        $is_demo = $setting->demo_mode;
         $ip   = request()->ip();
         $ip = $this->ipToString($ip);
 
@@ -114,7 +121,7 @@ class CounterController extends Controller
 
         $incrementing_minute = (int)($setting->minutes - $remaining_minutes);
 
-        if ($incrementing_minute < $deadline /* && !$cookie*/) {
+        if ($incrementing_minute < $setting->minutes && ($is_demo || !$cookie)) {
             $counter = Counter::where('minute',$incrementing_minute)->first();
              
             if ($counter) {

@@ -7,6 +7,37 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+<img src="uploads/demo2.png" alt="Alt text" title="Optional title">
+
+
+## A/B testing tools
+A/B testing, also known as split testing, refers to a randomized experimentation process wherein two or more versions of a variable (web page, page element, etc.) are shown to different segments of website visitors at the same time to determine which version leaves the maximum impact and drives business metrics.
+This system supports comparision of only two interfaces at a time. (Control and Variation)
+
+## Steps of Installation
+
+- git clone https://github.com/AmsaluGit/abtest.git
+- cd abtest
+- update .env according to your database credentials
+- composer install
+- create database 'abtest' in your local machine.
+- import the abtest.sql into your database
+- npm install
+- npm run dev
+- php artisan serve
+- got http://127.0.0.1:8000 as shown in your terminal.
+
+## How to use the system
+- on http://127.0.0.1:8000 click start to start the app.
+- Go to the setting menu, and fill the time a sample colletion would stay active(it's in minutes) 
+- click on each choice buttons(select) and see the progress.
+- graph progress is shown every minutes. 
+- the system stores a cookie, so a single browser can ony apply/select once. 
+- for demonstration purpose, you can disable cookie saving and allow your browser to be seen as if it was from different computers. 
+- to disable the system from using a cookie, you can go to your database, setting table and change the demo_mode to 1
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

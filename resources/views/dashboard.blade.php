@@ -23,7 +23,7 @@
                           <div class="blue">
                               <img src="uploads/demo2.png"/>
                           </div>
-                          <a href="#" class="btn btn-success text-center" style="width: 100%;margin-top: 10px;" id="variation" onclick="variations()">select</a> 
+                          <a href="#" class="btn btn-primary text-center" style="width: 100%;margin-top: 10px;" id="variation" onclick="variations()">select</a> 
                         </div>
                         
                       </div>
@@ -70,8 +70,8 @@ window.onload = function()
         var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText)
-        //window.location = "/dashboard";
+        // console.log(this.responseText)
+        window.location = "/dashboard";
       }
     };
     xmlhttp.open("GET", "/variation");

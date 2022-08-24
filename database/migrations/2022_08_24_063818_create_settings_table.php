@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('minutes')->default(0);
             $table->bigInteger('deadline')->default(0);
+            $table->smallInteger('demo_mode')->default(0);
             $table->timestamps();
         });
     }
