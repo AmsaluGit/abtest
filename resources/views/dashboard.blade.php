@@ -13,7 +13,7 @@
                     <div class="float-container" id="cont">
 
                         <div class="float-child">
-                          <div class="red">
+                          <div class="green">
                               <img src="/uploads/demo1.png"/>
                           </div>
                             <a href="#" class="btn btn-success text-center" style="width: 100%;margin-top: 10px;" id="control" onclick="controls()">select</a> 
@@ -112,7 +112,7 @@ window.onload = function()
         data: control,
         lineTension: 0,
         fill: false,
-        borderColor: 'red',
+        borderColor: 'green',
         borderWidth: 1.5,
         lineWidth:0.5
       };

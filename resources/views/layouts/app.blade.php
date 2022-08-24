@@ -28,8 +28,8 @@
         .blue {
             border: 1px solid blue;
         }
-        .red {
-            border: 1px solid red;
+        .green {
+            border: 1px solid green;
         }
         </style>
 
