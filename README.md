@@ -8,7 +8,7 @@
 </p>
 
 
-<img src="public/uploads/demo2.png" width="128">
+<img src="public/uploads/demo2.png" >
  
 
 ## A/B testing tools
