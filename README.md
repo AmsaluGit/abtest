@@ -1,6 +1,6 @@
 
 
-<img src="public/uploads/abtesting.png" >
+<img src="public/uploads/abtest.png" >
  
 
 ## A/B testing tools
