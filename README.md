@@ -24,7 +24,7 @@ This system supports comparision of only two interfaces at a time. (Control and 
 - on http://127.0.0.1:8000 click start to start the app.
 - Go to the setting menu, and fill the time a sample colletion would stay active(it's in minutes) 
 - click on each choice buttons(select) and see the progress.
-- graph progress is shown every minutes. 
+- graph progress updates itslef every minutes. 
 - the system stores a cookie, so a single browser can ony apply/select once. 
 - for demonstration purpose, you can disable cookie saving and allow your browser to be seen as if it was from different computers. 
 - to disable the system from using a cookie, you can go to your database, setting table and change the demo_mode to 1
