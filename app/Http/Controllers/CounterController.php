@@ -7,6 +7,7 @@ use App\Models\Setting;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response ;
+use PHPUnit\Framework\Constraint\Count;
 // use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -37,23 +38,31 @@ class CounterController extends Controller
     }
     public function setting(Request $request)
     {
-        return view('setting');
+        $setting = Setting::first();
+        $deadline = $setting->deadline;
+        $remaining_minutes = floor(($deadline - time())/60);
+        
+        return view('setting',['minutes'=>$remaining_minutes]);
     }
     public function settingUpdate(Request $request)
     {
-        $setting = Setting::find(1);
+        $setting = Setting::first();
         if (!$setting) {
             Setting::create(
                 [
                     'minutes' => $request->setting,
                     'deadline' => ((int)$request->setting*60 + time()), //deadline in seconds
-                    'demo_mode' => 0, //deadline in seconds
+                    'demo_mode' => 1, //demo mode enabled.
                 ]
             );
         } else {
             $setting->minutes = $request->setting;
             $setting->deadline = ((int)$request->setting*60 + time());
             $setting->save();
+
+            //delete counter records.
+            Counter::truncate();
+            
         }
 
          return redirect('dashboard');
@@ -62,7 +71,7 @@ class CounterController extends Controller
     public function control(Request $request)
     {
         
-         $setting = Setting::find(1);
+         $setting = Setting::first();
         if (!$setting) {
             return redirect('settingu');
         }
@@ -107,7 +116,7 @@ class CounterController extends Controller
     public function variation(Request $request)
     {
         
-         $setting = Setting::find(1);
+         $setting = Setting::first();
         if (!$setting) {
             return redirect('settingu');
         }

@@ -12,8 +12,8 @@
                     <form action="/setting/update" method="post" id="myForm">
                         @csrf
                         <label class="" for="setting">Enter Deadline in minutes<label>
-                            <input type="text" name="setting" id="setting"/>
-                            <a href="#" class="btn btn-success" id="btn">Save</a>
+                            <input type="text" name="setting" id="setting" value="{{ $minutes }}" />
+                            <a href="#" class="btn btn-success" id="btn">Reset</a>
                     </form>
  
                 </div>
@@ -26,7 +26,10 @@
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
  <script>
         $("#btn").on('click', function(){
-          $("#myForm").submit();
+           yes = confirm('Reseting would clean the previously collected survey, are you sure you want to continue?');
+           if(yes) $("#myForm").submit();
+           
+          
         })
     
     </script>
